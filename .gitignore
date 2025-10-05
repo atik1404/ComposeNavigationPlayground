@@ -1,0 +1,29 @@
+# Gradle files
+.gradle/
+build/
+local.properties
+
+# Android Studio/IntelliJ
+.idea/
+*.iml
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+# Mac OS
+.DS_Store
+
+# Build output
+/captures
+.externalNativeBuild
+.cxx
+
+# APK / AAB artifacts
+*.apk
+*.aab
+
+# Generated files
+outputs/
