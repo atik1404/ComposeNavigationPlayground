@@ -5,6 +5,7 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entry
 import com.playground.navigation.screens.MainScreen
+import com.playground.navigation.screens.SecondaryScreen
 
 object MainNavGraph {
     fun register(
@@ -18,6 +19,14 @@ object MainNavGraph {
                 onNavigateToScreenC = { backStack.add(Screens.ScreenC) },
                 onNavigateToScreenD = { backStack.add(Screens.ScreenD) },
                 onNavigateToScreenE = { backStack.add(Screens.ScreenE) },
+            )
+        }
+
+        entry(Main.MainScreen) {
+            SecondaryScreen(
+                onNavigateBack = {
+
+                }
             )
         }
     }

@@ -72,6 +72,13 @@ fun MainScreen(
             ) {
                 Text("Go to Screen E")
             }
+
+            TextButton(
+                onClick = { onNavigateToScreenE.invoke() },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Go to Secondary Screen")
+            }
         }
     }
 }
