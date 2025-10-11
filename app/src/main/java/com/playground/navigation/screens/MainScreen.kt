@@ -3,8 +3,10 @@ package com.playground.navigation.screens
 import LightDarkPreview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -13,16 +15,21 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.playground.navigation.AppToolbar
+import com.playground.navigation.model.CustomData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
+    secondaryScreenResult: String?,
     onNavigateToScreenA: () -> Unit,
     onNavigateToScreenB: () -> Unit,
     onNavigateToScreenC: () -> Unit,
     onNavigateToScreenD: () -> Unit,
-    onNavigateToScreenE: () -> Unit,
+    onNavigateToScreenE: (data: CustomData) -> Unit,
+    onNavigateToSecondaryScreen: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -38,6 +45,20 @@ fun MainScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+
+            if (secondaryScreenResult != null) {
+                Text(
+                    text = "Result from Secondary Screen: $secondaryScreenResult",
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(10.dp)
+                )
+
+            }
+
             TextButton(
                 onClick = { onNavigateToScreenA.invoke() },
                 modifier = Modifier.fillMaxWidth()
@@ -67,17 +88,23 @@ fun MainScreen(
             }
 
             TextButton(
-                onClick = { onNavigateToScreenE.invoke() },
+                onClick = {
+                    val data = CustomData(
+                        id = "1234567",
+                        name = "Hello",
+                    )
+                    onNavigateToScreenE.invoke(data)
+                },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Go to Screen E")
             }
 
             TextButton(
-                onClick = { onNavigateToScreenE.invoke() },
+                onClick = { onNavigateToSecondaryScreen.invoke() },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Go to Secondary Screen")
+                Text("Get result from Secondary Screen")
             }
         }
     }
@@ -92,5 +119,7 @@ fun PreviewMainScreen() {
         onNavigateToScreenC = {},
         onNavigateToScreenD = {},
         onNavigateToScreenE = {},
+        onNavigateToSecondaryScreen = {},
+        secondaryScreenResult = "Result from Secondary Screen: 12345"
     )
 }

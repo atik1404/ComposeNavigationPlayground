@@ -13,10 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.playground.navigation.AppToolbar
+import com.playground.navigation.model.CustomData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenE(
+    data: CustomData,
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
@@ -35,7 +37,7 @@ fun ScreenE(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                "Welcome to Screen E",
+                "Welcome to Screen E and data is ${data.id} - ${data.name}",
                 fontWeight = FontWeight.Bold
             )
         }
@@ -45,7 +47,8 @@ fun ScreenE(
 @Composable
 @LightDarkPreview
 fun PreviewScreenE() {
-    ScreenE {
-
-    }
+    ScreenE(
+        data = CustomData("1", "Test"),
+        onNavigateBack = {}
+    )
 }

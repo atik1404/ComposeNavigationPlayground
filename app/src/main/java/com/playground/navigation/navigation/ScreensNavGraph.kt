@@ -18,32 +18,43 @@ object ScreensNavGraph {
         builder: EntryProviderBuilder<NavKey>,
     ) = with(builder) {
         entry(Screens.ScreenA) {
-            ScreenA {
-                backStack.removeLastOrNull()
-            }
+            ScreenA(
+                onNavigateToScreen = {
+                    backStack.add(Screens.ScreenB)
+                },
+                onNavigateBack = { backStack.removeLastOrNull() }
+            )
         }
         entry(Screens.ScreenB) {
-            ScreenB {
-                backStack.removeLastOrNull()
-            }
+            ScreenB(
+                onNavigateToScreen = {
+                    backStack.add(Screens.ScreenD)
+                },
+                onNavigateBack = { backStack.removeLastOrNull() }
+            )
         }
         entry(Screens.ScreenC) {
-            ScreenC {
-                backStack.removeLastOrNull()
-            }
+            ScreenC(
+                onNavigationToSecondaryScreen = { id ->
+                    backStack.removeLastOrNull()// Remove ScreenC from backstack
+                    backStack.add(Main.SecondaryScreen(id))// Add SecondaryScreen to backstack
+                },
+                onNavigateBack = { backStack.removeLastOrNull() }
+            )
         }
         entry(Screens.ScreenD) {
-            ScreenD {
-                backStack.removeLastOrNull()
-            }
+            ScreenD(
+                onNavigateToScreen = {
+                    backStack.removeAll { true }
+                    backStack.add(Main.MainScreen)
+                },
+                onNavigateBack = { backStack.removeLastOrNull() }
+            )
         }
-        entry(Screens.ScreenE) {
-            ScreenE {
-                backStack.removeLastOrNull()
-            }
-        }
-        entry(Screens.ScreenF) {
-            ScreenF {
+        entry<Screens.ScreenE> { key ->
+            ScreenE(
+                data = key.data
+            ) {
                 backStack.removeLastOrNull()
             }
         }

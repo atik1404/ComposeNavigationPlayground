@@ -18,13 +18,14 @@ import com.playground.navigation.AppToolbar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SecondaryScreen(
+    detailsId: String,
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
         topBar = {
             AppToolbar(
                 onBackClick = {onNavigateBack.invoke()},
-                title = "Screen A",
+                title = "Secondary Screen",
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -36,7 +37,7 @@ fun SecondaryScreen(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                "Welcome to Secondary Screen",
+                "Welcome to Secondary Screen and id: $detailsId",
                 fontWeight = FontWeight.Bold
             )
         }
@@ -46,7 +47,7 @@ fun SecondaryScreen(
 @Composable
 @LightDarkPreview
 fun PreviewSecondaryScreen() {
-    SecondaryScreen{
+    SecondaryScreen("1234"){
 
     }
 }

@@ -1,3 +1,4 @@
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +15,8 @@ import com.playground.navigation.AppToolbar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenC(
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    onNavigationToSecondaryScreen: (id: String) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -28,7 +30,10 @@ fun ScreenC(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding),
+                .padding(padding)
+                .clickable {
+                    onNavigationToSecondaryScreen("From Screen C")
+                },
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -42,7 +47,8 @@ fun ScreenC(
 @Composable
 @LightDarkPreview
 fun PreviewScreenC() {
-    ScreenC {
-
-    }
+    ScreenC(
+        onNavigateBack = {},
+        onNavigationToSecondaryScreen = {}
+    )
 }

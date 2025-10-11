@@ -1,6 +1,7 @@
 package com.playground.navigation.navigation
 
 import androidx.navigation3.runtime.NavKey
+import com.playground.navigation.model.CustomData
 import kotlinx.serialization.Serializable
 
 sealed interface AppScreen : NavKey
@@ -19,14 +20,13 @@ sealed interface Screens : AppScreen {
     object ScreenD : AppScreen
 
     @Serializable
-    object ScreenE : AppScreen
-
-    @Serializable
-    object ScreenF : AppScreen
+    data class ScreenE(val data: CustomData) : AppScreen
 }
 
 sealed interface Main : AppScreen {
     @Serializable
     object MainScreen : AppScreen
-    data class DescriptionScreen(val id: String) : AppScreen
+
+    @Serializable
+    data class SecondaryScreen(val id: String) : AppScreen
 }
